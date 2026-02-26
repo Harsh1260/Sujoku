@@ -60,7 +60,7 @@ export function Hero3D({ startAnimation = true }: Hero3DProps) {
                         y: [0, -30, 0]
                     }}
                     transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute w-[800px] h-[800px] bg-primary rounded-full blur-[120px] opacity-30 mix-blend-screen translate-x-1/4 -translate-y-1/4"
+                    className="absolute w-[800px] h-[800px] bg-primary rounded-full blur-[120px] opacity-20 mix-blend-multiply translate-x-1/4 -translate-y-1/4"
                 />
                 {/* Radiant Purple Glow */}
                 <motion.div
@@ -70,13 +70,13 @@ export function Hero3D({ startAnimation = true }: Hero3DProps) {
                         y: [0, 40, 0]
                     }}
                     transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                    className="absolute w-[600px] h-[600px] bg-secondary rounded-full blur-[150px] opacity-30 mix-blend-screen -translate-x-1/3 translate-y-1/4"
+                    className="absolute w-[600px] h-[600px] bg-secondary rounded-full blur-[150px] opacity-40 mix-blend-multiply -translate-x-1/3 translate-y-1/4"
                 />
                 {/* Bright Cyan Core (Aurora bridge) */}
                 <motion.div
                     animate={{ opacity: [0.1, 0.3, 0.1] }}
                     transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute w-[400px] h-[400px] bg-[#3A9AD9] rounded-full blur-[100px] opacity-20"
+                    className="absolute w-[400px] h-[400px] bg-[#8B7B6A] rounded-full blur-[100px] opacity-30 mix-blend-multiply"
                 />
 
                 {/* Noise Texture Overlay for Premium Grain */}
@@ -103,7 +103,7 @@ export function Hero3D({ startAnimation = true }: Hero3DProps) {
                 {/* Massive Typography */}
                 <motion.h1 variants={itemVariants} className="text-6xl sm:text-8xl lg:text-[10rem] font-extralight tracking-tighter leading-[0.9] text-foreground">
                     <span className="block italic text-foreground/90">Awaken</span>
-                    <span className="block mt-2 font-medium bg-clip-text text-transparent bg-linear-to-r from-primary via-[#3A9AD9] to-secondary drop-shadow-[0_0_30px_rgba(142,93,175,0.4)]">
+                    <span className="block mt-2 font-medium bg-clip-text text-transparent bg-linear-to-r from-primary via-primary/80 to-primary/60 drop-shadow-[0_4px_10px_rgba(122,91,77,0.15)]">
                         Your Energy.
                     </span>
                 </motion.h1>
@@ -116,7 +116,7 @@ export function Hero3D({ startAnimation = true }: Hero3DProps) {
                 {/* Call to Action Buttons */}
                 <motion.div variants={itemVariants} className="mt-14 flex flex-col sm:flex-row gap-6 w-full sm:w-auto">
                     {/* Primary Button */}
-                    <button className="relative group overflow-hidden rounded-full font-medium text-lg text-primary-foreground shadow-[0_0_40px_rgba(0,95,107,0.3)] hover:shadow-[0_0_60px_rgba(142,93,175,0.5)] transition-all duration-500 hover:scale-105">
+                    <button className="relative group overflow-hidden rounded-full font-medium text-lg text-primary-foreground shadow-[0_8px_30px_rgba(122,91,77,0.2)] hover:shadow-[0_8px_40px_rgba(122,91,77,0.3)] transition-all duration-500 hover:scale-105">
                         {/* Glass Background */}
                         <div className="absolute inset-0 bg-primary/90 backdrop-blur-md rounded-full" />
                         {/* Hover Gradient Sweep */}

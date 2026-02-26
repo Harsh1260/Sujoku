@@ -144,13 +144,13 @@ export function TestimonialSection() {
                             />
 
                             {/* Premium Complex Gradients for Readability and Mood */}
-                            <div className="absolute inset-0 bg-linear-to-b from-transparent via-[#060912]/50 to-[#060912]/95" />
-                            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-[#060912] to-transparent opacity-80" />
-                            <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.5)] mix-blend-multiply" />
+                            <div className="absolute inset-0 bg-linear-to-b from-transparent via-[#251E1C]/50 to-[#251E1C]/95" />
+                            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-[#251E1C] to-transparent opacity-80" />
+                            <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(37,30,28,0.7)] mix-blend-multiply" />
 
-                            {/* Aurora Accent Glows inside the card */}
-                            <div className="absolute -bottom-20 -left-20 w-[300px] h-[300px] bg-primary/20 blur-[80px] rounded-full pointer-events-none mix-blend-screen" />
-                            <div className="absolute -bottom-20 -right-20 w-[300px] h-[300px] bg-secondary/20 blur-[80px] rounded-full pointer-events-none mix-blend-screen" />
+                            {/* Earthy Accent Glows inside the card */}
+                            <div className="absolute -bottom-20 -left-20 w-[300px] h-[300px] bg-[#A6968B]/30 blur-[80px] rounded-full pointer-events-none mix-blend-screen" />
+                            <div className="absolute -bottom-20 -right-20 w-[300px] h-[300px] bg-[#75554B]/30 blur-[80px] rounded-full pointer-events-none mix-blend-screen" />
 
                             {/* Text Content inside the zoomed image */}
                             <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end text-left z-10">

@@ -20,7 +20,7 @@ export function ServicesSection() {
             id: 3,
             title: "Seed Therapy (Seo-am Therapy)",
             description: "Applies natural seeds (like beans or peas) to specific points for continuous, gentle pressure and natural healing energy.",
-            imageSrc: "https://images.unsplash.com/photo-1596547609652-9fffaf41eb58?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", // Natural seeds/stones layout
+            imageSrc: "https://images.unsplash.com/photo-1620619767323-b95a89183081?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", // Natural seeds/stones layout
             price: "From ₹130",
         },
         {

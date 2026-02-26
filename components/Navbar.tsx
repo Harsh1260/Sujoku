@@ -96,7 +96,7 @@ export function Navbar() {
                     relative flex items-center justify-between px-8 py-4 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden
                     ${isScrolled
                         ? 'w-full max-w-5xl bg-background/70 backdrop-blur-xl border border-border/50 shadow-2xl rounded-full text-foreground'
-                        : 'w-full max-w-full bg-transparent text-white mix-blend-difference py-6 rounded-none'
+                        : 'w-full max-w-full bg-transparent text-foreground py-6 rounded-none'
                     }
                 `}
             >

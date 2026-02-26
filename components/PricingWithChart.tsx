@@ -27,7 +27,7 @@ export function PricingWithChart() {
             <div className="mx-auto max-w-6xl relative z-10">
                 {/* Heading */}
                 <FadeIn className="mx-auto mb-16 max-w-3xl text-center">
-                    <div className="inline-block px-4 py-2 rounded-full bg-secondary/10 text-secondary border border-secondary/20 text-sm font-semibold tracking-wide uppercase mb-6">
+                    <div className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-semibold tracking-wide uppercase mb-6 shadow-sm">
                         Transparent Pricing
                     </div>
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground">
@@ -41,7 +41,7 @@ export function PricingWithChart() {
 
                 {/* Pricing Grid */}
                 <FadeIn delay={0.1} direction="up">
-                    <div className="bg-card rounded-[2.5rem] border border-border/50 shadow-2xl overflow-hidden md:grid md:grid-cols-6 backdrop-blur-xl relative">
+                    <div className="bg-card/80 backdrop-blur-2xl rounded-[2.5rem] border border-border/80 shadow-[0_20px_60px_-15px_rgba(74,58,52,0.15)] overflow-hidden md:grid md:grid-cols-6 relative">
                         <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-transparent pointer-events-none" />
 
                         {/* Basic Plan */}
@@ -127,7 +127,7 @@ export function PricingWithChart() {
                                 <div className="mt-10 grid w-full grid-cols-2 gap-4">
                                     <Button
                                         asChild
-                                        className="group bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl py-6 font-medium shadow-lg hover:shadow-primary/30 shrink-0 transition-all border-none"
+                                        className="group bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl py-6 font-medium shadow-[0_8px_30px_rgba(117,85,75,0.25)] hover:shadow-[0_8px_40px_rgba(117,85,75,0.35)] shrink-0 transition-all border-none"
                                     >
                                         <a href="#contacts" className="flex items-center justify-center gap-2">
                                             Start Healing

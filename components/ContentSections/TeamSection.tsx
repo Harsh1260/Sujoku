@@ -40,7 +40,7 @@ export function TeamSection() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full">
                     {team.map((member, idx) => (
                         <FadeIn key={idx} delay={idx * 0.15} direction="up">
-                            <div className="group relative flex flex-col h-full bg-card rounded-[2.5rem] overflow-hidden border border-border hover:border-primary/50 transition-colors duration-500 shadow-xl">
+                            <div className="group relative flex flex-col h-full bg-card rounded-[2.5rem] overflow-hidden border border-border/50 hover:border-primary/30 transition-all duration-500 shadow-[0_8px_30px_rgba(74,58,52,0.08)] hover:shadow-[0_20px_40px_rgba(74,58,52,0.15)]">
 
                                 {/* Image Container */}
                                 <div className="relative w-full aspect-4/5 overflow-hidden">
@@ -57,15 +57,15 @@ export function TeamSection() {
                                 <div className="relative z-10 p-8 flex flex-col flex-grow bg-card transition-transform duration-500 group-hover:-translate-y-4">
                                     <h3 className="text-2xl font-medium mb-1 group-hover:text-primary transition-colors">{member.name}</h3>
                                     <p className="text-secondary font-medium text-sm mb-4 tracking-wide uppercase">{member.role}</p>
-                                    <p className="text-muted-foreground font-light leading-relaxed mb-6 flex-grow">
+                                    <p className="text-muted-foreground font-light leading-relaxed mb-8 flex-grow">
                                         {member.desc}
                                     </p>
 
                                     <div className="mt-auto flex gap-4">
-                                        <button className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all">
+                                        <button className="w-12 h-12 rounded-full flex items-center justify-center text-primary bg-primary/5 hover:bg-primary hover:text-primary-foreground transition-all">
                                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
                                         </button>
-                                        <button className="group flex-grow flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-secondary/10 text-secondary font-medium hover:bg-secondary hover:text-secondary-foreground transition-all">
+                                        <button className="group flex-grow flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-secondary text-secondary-foreground font-medium hover:bg-secondary/90 transition-all shadow-md hover:shadow-lg">
                                             Book with {member.name.split(' ')[0]}
                                             <CalendarPlus className="w-4 h-4 group-hover:scale-110 transition-transform" />
                                         </button>
