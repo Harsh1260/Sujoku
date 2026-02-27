@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 export default function NotFound() {
     return (
         <div className="min-h-screen w-full bg-[#EAE2D8] p-4 md:p-6 lg:p-8 flex items-center justify-center font-sans overflow-hidden">
-            <div className="relative w-full h-[calc(100vh-2rem)] md:h-[calc(100vh-3rem)] lg:h-[calc(100vh-4rem)] bg-[#DCCCB4] rounded-[2rem] md:rounded-[3rem] flex flex-col shadow-2xl overflow-hidden border border-[#e1d5c7]">
+            <div className="relative w-full h-[calc(100vh-2rem)] md:h-[calc(100vh-3rem)] lg:h-[calc(100vh-4rem)] bg-[#DCCCB4] rounded-4xl md:rounded-[3rem] flex flex-col shadow-2xl overflow-hidden border border-[#e1d5c7]">
 
                 {/* Background Watermark Text - Extra Large and Faint */}
                 <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none opacity-[0.25]">

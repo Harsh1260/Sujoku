@@ -177,7 +177,7 @@ export function Navbar() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -20, scale: 0.95 }}
                         transition={{ duration: 0.2, ease: "easeInOut" }}
-                        className="absolute top-full left-4 right-4 mt-2 bg-background/95 backdrop-blur-3xl border border-border overflow-hidden md:hidden flex flex-col items-center py-8 gap-6 rounded-[2rem] shadow-2xl z-40"
+                        className="absolute top-full left-4 right-4 mt-2 bg-background/95 backdrop-blur-3xl border border-border overflow-hidden md:hidden flex flex-col items-center py-8 gap-6 rounded-4xl shadow-2xl z-40"
                     >
                         {navItems.map((item, idx) => (
                             <motion.div

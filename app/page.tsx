@@ -14,7 +14,6 @@ import { BlogSection } from '@/components/ContentSections/BlogSection';
 import { PricingWithChart } from '@/components/PricingWithChart';
 import { FAQSection } from '@/components/ContentSections/FAQSection';
 import { CTASection } from '@/components/ContentSections/CTASection';
-import { Analytics } from '@vercel/analytics/react';
 
 export default function Home() {
   const [showPreloader, setShowPreloader] = useState(true);
@@ -46,7 +45,6 @@ export default function Home() {
           <Footer />
         </div>
       </main>
-      <Analytics />
     </>
   );
 }
