@@ -124,7 +124,7 @@ export function PricingWithChart() {
                                 </div>
 
                                 {/* Call to Action */}
-                                <div className="mt-10 grid w-full grid-cols-2 gap-4">
+                                <div className="mt-10 grid w-full grid-cols-1 sm:grid-cols-2 gap-4">
                                     <Button
                                         asChild
                                         className="group bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl py-6 font-medium shadow-[0_8px_30px_rgba(117,85,75,0.25)] hover:shadow-[0_8px_40px_rgba(117,85,75,0.35)] shrink-0 transition-all border-none"

@@ -10,6 +10,7 @@ import { PortfolioSection } from '@/components/ContentSections/PortfolioSection'
 import { ServicesSection } from '@/components/ContentSections/ServicesSection';
 import { TestimonialSection } from '@/components/ContentSections/TestimonialSection';
 import { TeamSection } from '@/components/ContentSections/TeamSection';
+import { BlogSection } from '@/components/ContentSections/BlogSection';
 import { PricingWithChart } from '@/components/PricingWithChart';
 import { FAQSection } from '@/components/ContentSections/FAQSection';
 import { CTASection } from '@/components/ContentSections/CTASection';
@@ -38,6 +39,7 @@ export default function Home() {
           <ServicesSection />
           <TestimonialSection />
           <TeamSection />
+          <BlogSection />
           <PricingWithChart />
           <FAQSection />
           <CTASection />

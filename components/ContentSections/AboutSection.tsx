@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { FadeIn } from '../Animations';
+import CountUp from '../CountUp';
 
 export function AboutSection() {
     const targetRef = useRef<HTMLDivElement>(null);
@@ -87,8 +88,8 @@ export function AboutSection() {
                                     key={index}
                                     style={isLast ? { scale: scaleLast } : {}}
                                     className={`
-                                        relative h-[40vh] md:h-[50vh] w-[70vw] md:w-[45rem] aspect-[4/3] shrink-0 
-                                        rounded-[2rem] overflow-hidden group shadow-2xl bg-muted/20
+                                        relative h-[40vh] md:h-[50vh] w-[70vw] md:w-180 aspect-4/3 shrink-0 
+                                        rounded-4xl overflow-hidden group shadow-2xl bg-muted/20
                                         ${isLast ? 'origin-center pointer-events-none' : ''}
                                     `}
                                 >
@@ -98,7 +99,7 @@ export function AboutSection() {
                                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                         loading="lazy"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-background/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                    <div className="absolute inset-0 bg-linear-to-t from-background/60 via-background/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 </motion.div>
                             );
                         })}
@@ -135,18 +136,24 @@ export function AboutSection() {
                                 </p>
                             </div>
 
-                            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-border/50 pt-12">
-                                <div>
-                                    <h4 className="text-3xl text-primary font-medium mb-2">15+</h4>
-                                    <p className="text-sm text-muted-foreground">Years of Experience</p>
+                            <div className="mt-12 grid grid-cols-3 gap-2 sm:gap-4 md:gap-8 border-t border-border/50 pt-8 md:pt-12">
+                                <div className="text-center md:text-left">
+                                    <h4 className="text-2xl sm:text-3xl font-medium mb-1 md:mb-2 text-primary">
+                                        <CountUp to={15} />+
+                                    </h4>
+                                    <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">Years of Experience</p>
                                 </div>
-                                <div>
-                                    <h4 className="text-3xl text-primary font-medium mb-2">10k+</h4>
-                                    <p className="text-sm text-muted-foreground">Patients Healed</p>
+                                <div className="text-center md:text-left">
+                                    <h4 className="text-2xl sm:text-3xl font-medium mb-1 md:mb-2 text-primary">
+                                        <CountUp to={10} />k+
+                                    </h4>
+                                    <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">Patients Healed</p>
                                 </div>
-                                <div>
-                                    <h4 className="text-3xl text-primary font-medium mb-2">5+</h4>
-                                    <p className="text-sm text-muted-foreground">Specialized Therapies</p>
+                                <div className="text-center md:text-left">
+                                    <h4 className="text-2xl sm:text-3xl font-medium mb-1 md:mb-2 text-primary">
+                                        <CountUp to={5} />+
+                                    </h4>
+                                    <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">Specialized Therapies</p>
                                 </div>
                             </div>
                         </FadeIn>

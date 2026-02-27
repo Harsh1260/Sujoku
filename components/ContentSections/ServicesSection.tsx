@@ -1,3 +1,6 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import { CardStack, CardStackItem } from '@/components/ui/card-stack';
 
 export function ServicesSection() {
@@ -46,6 +49,21 @@ export function ServicesSection() {
         }
     ];
 
+    const [screenWidth, setScreenWidth] = useState(1000);
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+        setScreenWidth(window.innerWidth);
+        const handleResize = () => setScreenWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const isMobile = screenWidth < 600;
+    const dynamicWidth = isMounted && isMobile ? screenWidth - 64 : 560;
+    const dynamicHeight = isMounted && isMobile ? 420 : 360;
+
     return (
         <section id="services" className="bg-background text-foreground w-full py-24 px-8 border-t border-border overflow-hidden">
             <div className="max-w-7xl mx-auto flex flex-col items-center">
@@ -68,8 +86,8 @@ export function ServicesSection() {
                         intervalMs={3500}
                         pauseOnHover={true}
                         showDots={true}
-                        cardWidth={560}
-                        cardHeight={360}
+                        cardWidth={dynamicWidth}
+                        cardHeight={dynamicHeight}
                         overlap={0.55}
                         perspectivePx={1200}
                         className="pb-10"

@@ -1,8 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { useState, useEffect } from 'react';
-import { motion, useSpring, useMotionValue, useTransform } from 'framer-motion';
+import { motion, useSpring, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 
 const navItems = [
     { href: '#about', label: 'About us' },
@@ -10,6 +12,7 @@ const navItems = [
     { href: '#services', label: 'Services' },
     { href: '#testimonials', label: 'Testimonials' },
     { href: '#team', label: 'Team' },
+    { href: '#blog', label: 'Blog' },
     { href: '#price-list', label: 'Price list' },
     { href: '#faq', label: 'FAQ' },
     { href: '#contacts', label: 'Contacts' }
@@ -18,6 +21,7 @@ const navItems = [
 export function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState<string>('');
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     // Natively track and smooth progress without re-rendering the whole Navbar component
     const rawProgress = useMotionValue(0);
@@ -132,8 +136,10 @@ export function Navbar() {
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className={`transition-colors relative z-10 whitespace-nowrap 
-                                    ${activeSection === item.href ? 'text-primary' : 'hover:text-primary'}
+                                className={`transition-all duration-300 relative z-10 whitespace-nowrap 
+                                    ${activeSection === item.href
+                                        ? 'text-primary scale-110'
+                                        : 'hover:text-primary hover:scale-105'}
                                 `}
                             >
                                 {item.label}
@@ -150,11 +156,48 @@ export function Navbar() {
                     </div>
                 </div>
 
-                {/* Right: Empty space to balance flex distribution */}
-                <div className="flex items-center justify-end w-1/3">
-                    {/* Empty for visual balance */}
+                {/* Right: Theme Toggle & Mobile Menu */}
+                <div className="flex items-center justify-end w-1/3 gap-4 pr-2">
+                    <ThemeToggle />
+                    <button
+                        className="md:hidden flex items-center justify-center p-2 text-foreground hover:text-primary transition-colors"
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        aria-label="Toggle mobile menu"
+                    >
+                        {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                    </button>
                 </div>
             </nav>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                        transition={{ duration: 0.2, ease: "easeInOut" }}
+                        className="absolute top-full left-4 right-4 mt-2 bg-background/95 backdrop-blur-3xl border border-border overflow-hidden md:hidden flex flex-col items-center py-8 gap-6 rounded-[2rem] shadow-2xl z-40"
+                    >
+                        {navItems.map((item, idx) => (
+                            <motion.div
+                                key={item.href}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 + (idx * 0.05) }}
+                            >
+                                <Link
+                                    href={item.href}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className={`text-xl tracking-wide font-medium transition-colors ${activeSection === item.href ? 'text-primary' : 'text-foreground/70 hover:text-primary'}`}
+                                >
+                                    {item.label}
+                                </Link>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }
