@@ -83,7 +83,7 @@ export function ServicesSection() {
                         items={services}
                         initialIndex={0}
                         autoAdvance={true}
-                        intervalMs={3500}
+                        intervalMs={5000}
                         pauseOnHover={true}
                         showDots={true}
                         cardWidth={dynamicWidth}

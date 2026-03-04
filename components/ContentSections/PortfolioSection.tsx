@@ -1,18 +1,47 @@
-import { useState } from 'react';
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
 import { FadeIn } from '../Animations';
 import { ArrowRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export function PortfolioSection() {
-    const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+    const [activeIdx, setActiveIdx] = useState<number>(0);
+    const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+    const isPausedRef = useRef(false);
 
-    // Array of premium, themed images for the portfolio
     const portfolioItems = [
         { id: 1, title: 'Serene Treatment Rooms', category: 'Environment', desc: 'Tranquil spaces designed for profound relaxation and healing.', img: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200&auto=format&fit=crop' },
         { id: 2, title: 'Precision Tools', category: 'Equipment', desc: 'State-of-the-art tools for accurate meridian stimulation.', img: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop' },
         { id: 3, title: 'Detailed Diagnosis', category: 'Process', desc: 'Comprehensive energy mapping before every holistic treatment.', img: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1200&auto=format&fit=crop' },
         { id: 4, title: 'Energy Mapping', category: 'Therapy', desc: 'Rebalancing your vital flow through focused acupressure points.', img: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=1200&auto=format&fit=crop' },
     ];
+
+    const startTimer = () => {
+        if (timerRef.current) clearInterval(timerRef.current);
+        timerRef.current = setInterval(() => {
+            if (!isPausedRef.current) {
+                setActiveIdx((prev) => (prev + 1) % portfolioItems.length);
+            }
+        }, 5000);
+    };
+
+    useEffect(() => {
+        startTimer();
+        return () => { if (timerRef.current) clearInterval(timerRef.current); };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const handleMouseEnter = (idx: number) => {
+        isPausedRef.current = true;
+        setActiveIdx(idx);
+    };
+
+    const handleMouseLeave = () => {
+        isPausedRef.current = false;
+        startTimer();
+    };
 
     return (
         <section id="portfolio" className="bg-background text-foreground w-full py-24 px-4 sm:px-8 border-t border-border/50 overflow-hidden">
@@ -28,100 +57,109 @@ export function PortfolioSection() {
                     </p>
                 </FadeIn>
 
-                {/* Expanding Accordion Gallery */}
+                {/* Accordion Gallery */}
                 <div
-                    className="flex flex-col md:flex-row w-full h-[600px] md:h-[500px] lg:h-[600px] gap-2 md:gap-4 select-none"
-                    onMouseLeave={() => setHoveredIdx(null)}
+                    className="flex flex-col md:flex-row w-full h-[600px] md:h-[500px] lg:h-[600px] gap-2 md:gap-3 select-none"
+                    onMouseLeave={handleMouseLeave}
                 >
                     {portfolioItems.map((item, idx) => {
-                        const isHovered = hoveredIdx === idx;
-                        const isAnyHovered = hoveredIdx !== null;
+                        const isActive = activeIdx === idx;
 
                         return (
-                            <motion.div
+                            <div
                                 key={item.id}
-                                onMouseEnter={() => setHoveredIdx(idx)}
-                                // Desktop logic: hover expands flex-grow, others shrink. Mobile logic: height expands.
-                                animate={{
-                                    flex: isHovered ? 4 : (isAnyHovered ? 1 : 1),
+                                onMouseEnter={() => handleMouseEnter(idx)}
+                                style={{
+                                    // Native CSS flex-grow transition — zero JS overhead, buttery smooth
+                                    flexGrow: isActive ? 4 : 1,
+                                    flexShrink: 1,
+                                    flexBasis: 0,
+                                    minWidth: 0,
+                                    transition: 'flex-grow 0.7s cubic-bezier(0.76, 0, 0.24, 1)',
                                 }}
-                                transition={{ type: 'spring', stiffness: 200, damping: 25 }}
-                                className="relative rounded-4xl overflow-hidden cursor-pointer bg-card shadow-[0_8px_30px_rgba(74,58,52,0.08)] group basis-1/4"
+                                className="relative rounded-4xl overflow-hidden cursor-pointer shadow-[0_8px_30px_rgba(74,58,52,0.1)]"
                             >
-                                {/* Background Image */}
-                                <motion.img
+                                {/* Background Image — CSS transition for scale + opacity */}
+                                <img
                                     src={item.img}
                                     alt={item.title}
-                                    animate={{
-                                        scale: isHovered ? 1.05 : 1,
+                                    style={{
+                                        transform: isActive ? 'scale(1.06)' : 'scale(1)',
+                                        opacity: isActive ? 1 : 0.5,
+                                        transition: 'transform 0.7s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.7s cubic-bezier(0.76, 0, 0.24, 1)',
+                                        willChange: 'transform, opacity',
                                     }}
-                                    transition={{ duration: 0.8, ease: "easeOut" }}
-                                    className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${isHovered ? 'mix-blend-normal opacity-100' : 'mix-blend-multiply opacity-50 sepia-30'
-                                        }`}
+                                    className="absolute inset-0 w-full h-full object-cover"
                                 />
 
-                                {/* Always-on subtle vignette */}
-                                <div className="absolute inset-0 shadow-[inset_0_0_80px_rgba(74,58,52,0.1)] pointer-events-none" />
-
-                                {/* Gradient Overlay - Thickens when hovered to read text */}
-                                <motion.div
-                                    animate={{
-                                        opacity: isHovered ? 0.85 : 0.4
+                                {/* Gradient Overlay */}
+                                <div
+                                    style={{
+                                        opacity: isActive ? 1 : 0.45,
+                                        transition: 'opacity 0.7s cubic-bezier(0.76, 0, 0.24, 1)',
                                     }}
-                                    className="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-[#251E1C] via-[#251E1C]/50 to-transparent transition-opacity duration-500 pointer-events-none"
+                                    className="absolute inset-x-0 bottom-0 h-3/4 bg-linear-to-t from-[#1D2418] via-[#252D1C]/60 to-transparent pointer-events-none"
                                 />
 
                                 {/* Text Content */}
-                                <AnimatePresence>
-                                    <div className="absolute bottom-0 left-0 w-full h-full flex flex-col justify-end p-6 md:p-8 pointer-events-none">
-                                        <div className="flex flex-col overflow-hidden">
+                                <div className="absolute bottom-0 left-0 w-full flex flex-col justify-end p-6 md:p-8 pointer-events-none overflow-hidden">
 
-                                            {/* Category Tag - Always visible, but styled differently */}
-                                            <motion.div
-                                                layout="position"
-                                                className={`transition-all duration-500 ${isHovered ? 'opacity-100 translate-y-0 mb-3' : 'opacity-80 translate-y-4'}`}
-                                            >
-                                                <span className={`inline-block whitespace-nowrap text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase ${isHovered ? 'text-[#C4B2A8] bg-white/5 border border-white/10 px-3 py-1 rounded-full backdrop-blur-sm' : 'text-[#F8F5F1] origin-bottom-left -rotate-90 md:rotate-0 absolute md:relative bottom-12 md:bottom-0 left-6 md:left-0'}`}>
-                                                    {item.category}
-                                                </span>
-                                            </motion.div>
+                                    {/* Category Tag */}
+                                    <span
+                                        style={{
+                                            opacity: isActive ? 1 : 0.7,
+                                            transform: isActive ? 'translateY(0)' : 'translateY(6px)',
+                                            transition: 'opacity 0.5s ease, transform 0.5s ease',
+                                            display: 'inline-block',
+                                            alignSelf: 'flex-start',
+                                            marginBottom: isActive ? '12px' : '0px',
+                                        }}
+                                        className={`whitespace-nowrap text-[10px] font-bold tracking-[0.2em] uppercase
+                                            ${isActive
+                                                ? 'text-[#C4B2A8] bg-white/10 border border-white/15 px-3 py-1 rounded-full backdrop-blur-sm'
+                                                : 'text-[#F8F5F1] hidden md:inline-block'
+                                            }`}
+                                    >
+                                        {item.category}
+                                    </span>
 
-                                            {/* Title and Description - Only full opacity on hover */}
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{
-                                                    opacity: isHovered ? 1 : 0,
-                                                    y: isHovered ? 0 : 20,
-                                                    height: isHovered ? 'auto' : 0
-                                                }}
-                                                className="flex flex-col gap-2 overflow-hidden"
-                                            >
-                                                <h3 className="text-[#F8F5F1] text-2xl md:text-3xl font-medium tracking-tight whitespace-nowrap">
-                                                    {item.title}
-                                                </h3>
-                                                <motion.p
-                                                    initial={{ opacity: 0 }}
-                                                    animate={{ opacity: isHovered ? 0.8 : 0 }}
-                                                    transition={{ delay: 0.1 }}
-                                                    className="text-[#EBE5DF] text-sm md:text-base font-light line-clamp-2 md:line-clamp-none whitespace-normal md:whitespace-nowrap md:w-[400px]"
-                                                >
-                                                    {item.desc}
-                                                </motion.p>
-                                            </motion.div>
+                                    {/* Title + Description */}
+                                    <motion.div
+                                        animate={{
+                                            opacity: isActive ? 1 : 0,
+                                            y: isActive ? 0 : 18,
+                                        }}
+                                        transition={{
+                                            duration: 0.45,
+                                            ease: [0.25, 0.46, 0.45, 0.94],
+                                            delay: isActive ? 0.12 : 0,
+                                        }}
+                                    >
+                                        <h3 className="text-[#F8F5F1] text-2xl md:text-3xl font-medium tracking-tight mb-1 whitespace-nowrap">
+                                            {item.title}
+                                        </h3>
+                                        <p
+                                            style={{
+                                                opacity: isActive ? 0.75 : 0,
+                                                transition: `opacity 0.4s ease ${isActive ? '0.2s' : '0s'}`,
+                                            }}
+                                            className="text-[#EDE8DC] text-sm md:text-base font-light whitespace-normal md:whitespace-nowrap"
+                                        >
+                                            {item.desc}
+                                        </p>
+                                    </motion.div>
 
-                                        </div>
-                                    </div>
-                                </AnimatePresence>
-                            </motion.div>
+                                </div>
+                            </div>
                         );
                     })}
                 </div>
 
                 <FadeIn delay={0.4} className="mt-20">
-                    <button className="group flex items-center gap-2 bg-primary/5 border border-primary/20 text-primary px-8 py-4 rounded-full font-medium hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-500 shadow-sm hover:shadow-[0_8px_30px_rgba(117,85,75,0.25)]">
+                    <Link href="/gallery" className="group inline-flex items-center gap-2 bg-primary/5 border border-primary/20 text-primary px-8 py-4 rounded-full font-medium hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-500 shadow-sm hover:shadow-[0_8px_30px_rgba(117,85,75,0.25)]">
                         Explore Full Gallery
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    </Link>
                 </FadeIn>
 
             </div>

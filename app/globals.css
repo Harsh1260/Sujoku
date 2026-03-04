@@ -12,93 +12,55 @@ html {
 }
 
 :root {
-  --background: #F8F5F1;
-  /* Ultra-soft warm ivory */
-  --foreground: #4A3A34;
-  /* Deep warm espresso for strong contrast but less harsh than black */
+  /* ─── Background & Surface ───────────────────────────────────── */
+  --background: #EDE8DC;
+  /* Warm cream, blog-inspired */
+  --foreground: #2A3320;
+  /* Deep forest green — replaces espresso */
 
-  --card: #FFFFFF;
-  --card-foreground: #4A3A34;
+  --card: #F5F0E6;
+  /* Lighter parchment for cards */
+  --card-foreground: #2A3320;
 
-  --popover: #FFFFFF;
-  --popover-foreground: #4A3A34;
+  --popover: #F5F0E6;
+  --popover-foreground: #2A3320;
 
-  /* Primary is the rich, warm medium-dark brown utilized for bold accents and headings */
-  --primary: #75554B;
-  --primary-foreground: #FFFFFF;
+  /* ─── Primary = vibrant lime green (blog's #5ECA61 accent) ─── */
+  --primary: #4BBF5A;
+  /* Forest lime — rich, not neon */
+  --primary-foreground: #F5F0E6;
 
-  /* Secondary is the softer taupe brown used for subdued backgrounds/borders */
-  --secondary: #A6968B;
-  --secondary-foreground: #FFFFFF;
+  /* ─── Secondary = deep forest green (blog's #343B2A) ────────── */
+  --secondary: #343B2A;
+  --secondary-foreground: #EDE8DC;
 
-  /* Muted is the very light creamy beige for section backgrounds */
-  --muted: #EBE5DF;
-  /* More saturated warm taupe for muted text */
-  --muted-foreground: #82726A;
+  /* ─── Muted = sage green-tinted beige ────────────────────────── */
+  --muted: #D4D0C0;
+  --muted-foreground: #5D6B4A;
+  /* Mid sage */
 
-  --accent: #EBE5DF;
-  --accent-foreground: #4A3A34;
+  /* ─── Accent = medium forest green ──────────────────────────── */
+  --accent: #DAD6C6;
+  --accent-foreground: #2A3320;
 
   --destructive: #9A2C2C;
-  --destructive-foreground: #FFFFFF;
+  --destructive-foreground: #F5F0E6;
 
-  /* Borders should be a very soft beige-taupe */
-  --border: #D8D0C9;
-  --input: #D8D0C9;
-  --ring: #75554B;
+  /* ─── Borders = warm greenish-grey ──────────────────────────── */
+  --border: #C4C0AC;
+  --input: #C4C0AC;
+  --ring: #4BBF5A;
 
   --radius: 0.75rem;
 
-  --sidebar: #F8F5F1;
-  --sidebar-foreground: #4A3A34;
-  --sidebar-primary: #75554B;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #EBE5DF;
-  --sidebar-accent-foreground: #4A3A34;
-  --sidebar-border: #D8D0C9;
-  --sidebar-ring: #75554B;
-}
-
-.dark {
-  --background: #251E1C;
-  /* Deep espresso block */
-  --foreground: #F8F5F1;
-  /* Soft ivory text */
-
-  --card: #332A28;
-  --card-foreground: #F8F5F1;
-
-  --popover: #332A28;
-  --popover-foreground: #F8F5F1;
-
-  --primary: #C4B2A8;
-  /* Softer beige for dark mode primary */
-  --primary-foreground: #251E1C;
-
-  --secondary: #584640;
-  --secondary-foreground: #F8F5F1;
-
-  --muted: #3D322F;
-  --muted-foreground: #A6968B;
-
-  --accent: #3D322F;
-  --accent-foreground: #F8F5F1;
-
-  --destructive: #EF4444;
-  --destructive-foreground: #FFFFFF;
-
-  --border: #4A3C38;
-  --input: #4A3C38;
-  --ring: #C4B2A8;
-
-  --sidebar: #251E1C;
-  --sidebar-foreground: #F8F5F1;
-  --sidebar-primary: #C4B2A8;
-  --sidebar-primary-foreground: #251E1C;
-  --sidebar-accent: #3D322F;
-  --sidebar-accent-foreground: #F8F5F1;
-  --sidebar-border: #4A3C38;
-  --sidebar-ring: #C4B2A8;
+  --sidebar: #EDE8DC;
+  --sidebar-foreground: #2A3320;
+  --sidebar-primary: #4BBF5A;
+  --sidebar-primary-foreground: #F5F0E6;
+  --sidebar-accent: #DAD6C6;
+  --sidebar-accent-foreground: #2A3320;
+  --sidebar-border: #C4C0AC;
+  --sidebar-ring: #4BBF5A;
 }
 
 @theme inline {

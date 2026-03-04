@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { ThemeToggle } from '@/components/theme-toggle';
 import { useState, useEffect } from 'react';
 import { motion, useSpring, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
@@ -158,7 +157,6 @@ export function Navbar() {
 
                 {/* Right: Theme Toggle & Mobile Menu */}
                 <div className="flex items-center justify-end w-1/3 gap-4 pr-2">
-                    <ThemeToggle />
                     <button
                         className="md:hidden flex items-center justify-center p-2 text-foreground hover:text-primary transition-colors"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

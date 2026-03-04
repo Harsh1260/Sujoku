@@ -101,8 +101,8 @@ export function CardStack<T extends CardStackItem>({
     activeScale = 1.03,
     inactiveScale = 0.94,
 
-    springStiffness = 280,
-    springDamping = 28,
+    springStiffness = 220,
+    springDamping = 36,
 
     loop = true,
     autoAdvance = false,
@@ -270,7 +270,7 @@ export function CardStack<T extends CardStackItem>({
                                 <motion.div
                                     key={item.id}
                                     className={cn(
-                                        "absolute bottom-0 rounded-[1.5rem] border-4 border-white overflow-hidden shadow-2xl",
+                                        "absolute bottom-0 rounded-3xl border-4 border-white overflow-hidden shadow-2xl",
                                         "will-change-transform select-none",
                                         isActive
                                             ? "cursor-grab active:cursor-grabbing"
@@ -306,6 +306,8 @@ export function CardStack<T extends CardStackItem>({
                                         type: "spring",
                                         stiffness: springStiffness,
                                         damping: springDamping,
+                                        mass: 0.9,
+                                        restDelta: 0.001,
                                     }}
                                     onClick={() => setActive(i)}
                                     {...dragProps}
@@ -377,7 +379,7 @@ function DefaultFanCard({ item }: { item: CardStackItem; active: boolean }) {
                     <img
                         src={item.imageSrc}
                         alt={item.title}
-                        className="h-full w-full object-cover transition-transform duration-[2000ms] hover:scale-105"
+                        className="h-full w-full object-cover transition-transform duration-2000 hover:scale-105"
                         draggable={false}
                         loading="eager"
                     />

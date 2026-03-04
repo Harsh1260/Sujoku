@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { CheckCircleIcon, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import { CartesianGrid, Line, LineChart, XAxis } from 'recharts';
 
 import {
@@ -129,10 +130,10 @@ export function PricingWithChart() {
                                         asChild
                                         className="group bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl py-6 font-medium shadow-[0_8px_30px_rgba(117,85,75,0.25)] hover:shadow-[0_8px_40px_rgba(117,85,75,0.35)] shrink-0 transition-all border-none"
                                     >
-                                        <a href="#contacts" className="flex items-center justify-center gap-2">
+                                        <Link href="/start-healing" className="flex items-center justify-center gap-2">
                                             Start Healing
                                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                        </a>
+                                        </Link>
                                     </Button>
                                     <Button asChild variant="outline" className="group rounded-xl py-6 font-light hover:bg-secondary/10 hover:text-secondary border-border/50 transition-colors">
                                         <a href="#contacts" className="flex items-center justify-center gap-2">
